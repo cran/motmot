@@ -22,7 +22,7 @@ sortedData <- sortTraitData(phy=anolis.tree, y=anolis.data, data.name="Male_SVL"
 phy <- sortedData$phy
 male.length <- sortedData$trait
 
-## ----plot1, fig.cap = "Figure 1. TraitData showing the realtive male snout-vent length at the tips", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot1, fig.cap = "Figure 1. TraitData showing the realtive male snout-vent length at the tips", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 traitData.plot(y=male.length, phy, lwd.traits=2, col.label="#00008050", tck=-0.01, mgp=c(0,0.2,0), cex.axis=0.5, show.tips=FALSE)
 
 ## ------------------------------------------------------------------------
@@ -40,7 +40,7 @@ bm.ml
 lambda.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="lambda")
 lambda.ml
 
-## ----plot2, fig.cap = "Figure 2. Profile plot of ML estimation for Pagel's lambda", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot2, fig.cap = "Figure 2. Profile plot of ML estimation for Pagel's lambda", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 lambda.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="lambda", profilePlot=TRUE)
 
 ## ------------------------------------------------------------------------
@@ -54,7 +54,7 @@ bm.ml$AICc- lambda.ml$AICc
 delta.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="delta")
 delta.ml
 
-## ----plot3, fig.cap = "Figure 3. Comparison of BM and Kappa transformed trees.", echo = T, fig.height = 5, fig.width = 5, , fig.path='figures/', dev='png', dpi=200----
+## ----plot3, fig.cap = "Figure 3. Comparison of BM and Kappa transformed trees.", echo = T, fig.height = 5, fig.width = 5, ,dpi=200----
 kappa.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="kappa", profilePlot=FALSE, returnPhy=TRUE)
 par(mfrow=c(1,2))
 plot.phylo(phy.clade, show.tip.label=FALSE, no.margin=TRUE)
@@ -63,7 +63,7 @@ plot.phylo(kappa.ml$kappaPhy, show.tip.label=FALSE, no.margin=TRUE)
 mtext("Kappa model phylogeny", 3, cex=0.7, line=-1)
 mtext("Kappa = 1e-8", 3, cex=0.7, line=-2)
 
-## ----plot4, fig.cap = "Figure 4. Profile plot to estimate alpha", echo = T, fig.height = 5, fig.width = 5, , fig.path='figures/', dev='png', dpi=200----
+## ----plot4, fig.cap = "Figure 4. Profile plot to estimate alpha", echo = T, fig.height = 5, fig.width = 5, ,dpi=200----
 ou.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="OU", profilePlot=TRUE, upperBound=2)
 ou.ml
 
@@ -72,7 +72,7 @@ p.value <- 1 - pchisq(ou.ml$MaximumLikelihood - bm.ml$logLikelihood, 1)
 p.value
 bm.ml$AICc- ou.ml$AICc
 
-## ----plot5, fig.cap = "Figure 5. Profile plot to estimate the ACDC parameter", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot5, fig.cap = "Figure 5. Profile plot to estimate the ACDC parameter", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 acdc.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="ACDC", profilePlot=TRUE)
 acdc.ml
 
@@ -83,7 +83,7 @@ p.value.2
 ## ------------------------------------------------------------------------
 transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="ACDC", profilePlot=FALSE, upperBound=-1e-6, print.warning=FALSE)
 
-## ----plot6, fig.cap = "Figure 6. Profile plot to estimate the psi parameter", echo = TRUE, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot6, fig.cap = "Figure 6. Profile plot to estimate the psi parameter", echo = TRUE, fig.height = 5, fig.width = 5,dpi=200----
 psi.ml <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="psi", profilePlot=TRUE)
 psi.ml
 
@@ -95,7 +95,7 @@ p.value.psi
 psi_ext.est <- transformPhylo.ML(phy=phy.clade, y=male.length.clade, model="psi", profilePlot=FALSE, hiddenSpeciation=TRUE, full.phy=phy)
 all.equal(psi.ml, psi_ext.est)
 
-## ----plot7, fig.cap = "Figure 7. Two clades used in the multipsi model", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot7, fig.cap = "Figure 7. Two clades used in the multipsi model", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 plot(phy.clade, no.margin=TRUE, cex=0.8)
 two.clade.labels <- c(rep("a", 17), rep("b",37))
 edgelabels(two.clade.labels, col=c(rep("blue", 17), rep("red", 37)), bg="white")
@@ -116,7 +116,7 @@ acdc.ml.lambda
 # p value of the BM and ACDC+lambda model comparison. No significant improvement
 1 - pchisq(acdc.ml.lambda$MaximumLikelihood - bm.ml$logLikelihood, df=2)
 
-## ----plot8, fig.cap = "Figure 8. Lineages with different rates of evolution", echo = T, fig.height = 5, fig.width = 5, , fig.path='figures/', dev='png', dpi=200----
+## ----plot8, fig.cap = "Figure 8. Lineages with different rates of evolution", echo = T, fig.height = 5, fig.width = 5, ,dpi=200----
 plot(phy.clade, show.tip.label=FALSE, no.margin=TRUE, edge.col="grey20")
 nodelabels(c(32, 49), c(32, 49), bg="black", col="white")
 
@@ -131,7 +131,7 @@ cladeRate.ml
 # tm2 model
 tm2.ml <- transformPhylo.ML(y=male.length.clade, phy=phy.clade, model="tm2", minCladeSize=5, nSplits=2)
 
-## ----plot9, fig.cap = "Figure 9. The subset of the tree showing the rate heterogeneity estimated from the traitMedusa model", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot9, fig.cap = "Figure 9. The subset of the tree showing the rate heterogeneity estimated from the traitMedusa model", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 trait.medusa.tm2.summary <- traitMedusaSummary(tm2.ml, cutoff=2, AICc=TRUE)
 trait.medusa.tm2.summary
 colour_motmot <- plotPhylo.motmot(phy=phy.clade, traitMedusaObject=trait.medusa.tm2.summary, reconType = "rates", type = "fan", cex=0.5, edge.width=2)
@@ -149,7 +149,7 @@ traitMedusaSummary(tm2.ml, cutoff=5.698198, AICc=TRUE)$Rates
 ## ------------------------------------------------------------------------
 timeSlice.10.ml <- transformPhylo.ML(y=male.length.clade, phy=phy.clade, model="timeSlice", splitTime=10)
 
-## ----plot10, fig.cap = "Figure 10. TimeSlice plot with a split at 10 Ma", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot10, fig.cap = "Figure 10. TimeSlice plot with a split at 10 Ma", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 outputSummary <- timeSliceSummary(timeSlice.10.ml, cutoff=0.001, cex=0.55, edge.width=2, cex.plot=0.8, colour.ramp=c("blue", "red"), label.offset=0.5)
 
 ## ------------------------------------------------------------------------
@@ -158,8 +158,8 @@ outputSummary$RatesCI
 ## ------------------------------------------------------------------------
 timeSlice.ml <- transformPhylo.ML(y=male.length.clade, phy=phy.clade, model="timeSlice", nSplits=1, boundaryAge=8)
 
-## ----plot11, fig.cap = "Figure 11. TimeSlice plot with Maximum likelihood estimation of split time", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
-outputSummary <- timeSliceSummary(timeSlice.10.ml, cutoff=1, cex=0.2, edge.width=2, cex.plot=0.8, colour.ramp=c("blue", "red"), label.offset=0.5)
+## ----plot11, fig.cap = "Figure 11. TimeSlice plot with Maximum likelihood estimation of split time", echo = T, fig.height = 5, fig.width = 5,dpi=200----
+outputSummary <- timeSliceSummary(timeSlice.ml, cutoff=1, cex=0.2, edge.width=2, cex.plot=0.8, colour.ramp=c("blue", "red"), label.offset=0.5)
 
 ## ------------------------------------------------------------------------
 modeSlice.ml <- transformPhylo.ML(y=male.length.clade, phy=phy.clade, model="modeSlice", splitTime=c(40, 30), mode.order=c("ACDC", "OU", "BM"), rate.var=TRUE, acdcScalar=TRUE)
@@ -181,7 +181,7 @@ lambda.mcmc <- transformPhylo.MCMC(y=male.length.clade, phy=phy.clade, model="la
 ## ------------------------------------------------------------------------
 lambda.mcmc[1:4]
 
-## ----plot12, fig.cap = "Figure 12. MCMC trace for Pagel's lambda", echo = T, fig.height = 5, fig.width = 5, fig.path='figures/', dev='png', dpi=200----
+## ----plot12, fig.cap = "Figure 12. MCMC trace for Pagel's lambda", echo = T, fig.height = 5, fig.width = 5,dpi=200----
 mcmc.plot(lambda.mcmc)
 
 ## ------------------------------------------------------------------------
