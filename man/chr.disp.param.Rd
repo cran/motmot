@@ -4,9 +4,19 @@
 \alias{chr.disp.param}
 \title{Simulate character displacement data wrapper}
 \usage{
-chr.disp.param(phy, n.sim = 100, n.steps = 1000, max.sigma = 8,
-  max.a = 8, est.blomberg.k = FALSE, ntraits = 1, sympatry = NA,
-  allopatry = NA, trait.lim = NA, mc.cores = 1)
+chr.disp.param(
+  phy,
+  n.sim = 100,
+  n.steps = 1000,
+  max.sigma = 8,
+  max.a = 8,
+  est.blomberg.k = FALSE,
+  ntraits = 1,
+  sympatry = NA,
+  allopatry = NA,
+  trait.lim = NA,
+  mc.cores = 1
+)
 }
 \arguments{
 \item{phy}{An object of class \code{phylo} (see \pkg{ape}).}

@@ -105,13 +105,12 @@ checktree <- function(phy) {
 # If matrix is NA then all elements are set to constant number n
 
 vectortime <- function(sympatric, degree, n.tips) {
-    if(all(is.na(sympatric)))
-    {
-        sympatric.out = replicate(n.tips ^ 2, degree)
-    } else if(class(sympatric)=="matrix") {
-        sympatric.out = as.vector(sympatric)
-    }
-    sympatric.out
+  if (all(is.na(sympatric))) {
+    sympatric.out <- replicate(n.tips ^ 2, degree)
+  } else {
+    sympatric.out <- as.vector(sympatric)
+  }
+  sympatric.out
 }
 
 ## Reorder a dataset to match the order of tips in an ape-format tree
@@ -165,12 +164,18 @@ summary_stats <- function(phy, y, est.blomberg.k=FALSE) {
     output <- list(mean.gap=mean(gap), sd.gap=sd(gap))
 
     # Summary statistics: mean and sd of gaps between neighbours. Plus Blomberg's K optionally.
-    k.est <- c()
     if(est.blomberg.k) {
-        k.est <- 1:ntraits
-        k.est <- sapply(1:ntraits, function(k.int) blomberg.k(y=as.matrix(y[,k.int]), phy=phy))
+        k.est <- sapply(1:ntraits, function(k.int) {
+        		y.nit <- as.matrix(y[, k.int])
+        		rownames(y.nit) <- phy$tip.label
+        		blomberg.k(y=y.nit, phy=phy)
+        		}
+        	)
         k.est <- mean(k.est)
         output$blom.k <- k.est
     }
     return(output)
   }
+
+
+   

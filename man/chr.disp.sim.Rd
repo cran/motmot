@@ -4,8 +4,16 @@
 \alias{chr.disp.sim}
 \title{Simulate character displacement data}
 \usage{
-chr.disp.sim(phy, n.steps = 1000, sigma = 1, a = 0, ntraits = 1,
-  sympatry = NA, allopatry = NA, trait.lim = NA)
+chr.disp.sim(
+  phy,
+  n.steps = 1000,
+  sigma = 1,
+  a = 0,
+  ntraits = 1,
+  sympatry = NA,
+  allopatry = NA,
+  trait.lim = NA
+)
 }
 \arguments{
 \item{phy}{An object of class \code{phylo} (see \pkg{ape}).}
